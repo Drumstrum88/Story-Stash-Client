@@ -1,26 +1,30 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import { useEffect, useState } from 'react';
+import { getBooks } from '../utils/api/books';
+import BookCard from '../components/book_card';
 
 function Home() {
-  const { user } = useAuth();
+  const [books, setBooks] = useState([]);
+  // const [change, setChange] = useState(true);
+
+  const getCommunityBooks = () => {
+    getBooks().then(setBooks);
+  };
+
+  useEffect(() => {
+    getCommunityBooks();
+  }, []);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hello {user.fbUser.displayName}! </h1>
-      <p>Your Bio: {user.bio}</p>
-      <p>Click the button below to logout!</p>
-      <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
-        Sign Out
-      </Button>
-    </div>
+    <article><article className="books" />
+      <h1>Books</h1>
+      <div className="book-cards">
+        {books.map((book) => (
+          <section key={book.id}>
+            <BookCard bookObj={book} onUpdate={getCommunityBooks} />
+          </section>
+        ))}
+      </div>
+    </article>
   );
 }
 
