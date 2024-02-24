@@ -12,7 +12,6 @@ export default function BookCard({ bookObj }) {
       </Card.Body>
       <Card.Img className="book-image" src={bookObj.image} />
       <Card.Body>
-        {/* <Card.Text>{bookObj.description}</Card.Text> */}
         <Card.Link href={`books/${bookObj.id}`}>Read More</Card.Link>
       </Card.Body>
     </Card>
