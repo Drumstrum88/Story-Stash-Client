@@ -15,7 +15,7 @@ function Home() {
   }, []);
 
   return (
-    <article><article className="books" />
+    <article>
       <h1>Books</h1>
       <div className="book-cards">
         {books.map((book) => (

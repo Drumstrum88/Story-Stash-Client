@@ -26,6 +26,9 @@ export default function ViewBook() {
     }
   };
 
+  console.warn('user:', user);
+  console.warn('Book:', book);
+
   return (
     <Card className="my-2">
       <Card.Body>
@@ -39,18 +42,19 @@ export default function ViewBook() {
         alt="Card image cap"
         src={book.image}
         style={{
-          height: 400,
-          width: 300,
+          height: 250,
+          width: 200,
+          padding: 10,
         }}
         width="75%"
       />
       <Card.Footer>
-        {book.user?.id === user.id ? (
+        {book.user_id === user.id ? (
           <>
-            <Link passHref href="/">
-              <PencilFill type="button" />
+            <Link passHref href={`/books/edit/${book.id}`}>
+              <PencilFill type="button" className="pencil" />
             </Link>
-            <XCircle className="delete-book" type="button" onClick={handleDelete} />
+            <XCircle className="delete" type="button" onClick={handleDelete} />
           </>
         ) : (
           ''

@@ -39,18 +39,21 @@ const addBook = (book) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateBook = (id, book) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(book),
-  })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
-    .catch(reject);
-});
+const updateBook = (updateData) => {
+  const { id, ...rest } = updateData;
+  return new Promise((resolve, reject) => {
+    fetch(`${endpoint}/books/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(rest),
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+};
 
 const deleteBook = (id) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${id}`, {
@@ -59,8 +62,7 @@ const deleteBook = (id) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then(resolve)
     .catch(reject);
 });
 

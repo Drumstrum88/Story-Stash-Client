@@ -20,3 +20,17 @@ a {
 body {
   background-color: #88effd;
 }
+
+.book-cards {
+  display: flex;
+  flex-direction: wrap;
+  padding: 10px;
+}
+
+.pencil {
+  margin: 5px;
+}
+
+.delete{
+  margin: 5px;
+}
