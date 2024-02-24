@@ -19,7 +19,6 @@ const BookForm = ({ bookObj }) => {
   const router = useRouter();
   const { user } = useAuth();
   const { id } = router.query;
-  console.warn('Book ID from router:', id);
 
   useEffect(() => {
     if (bookObj) {

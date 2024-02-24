@@ -26,7 +26,7 @@ export default function NavBar() {
             <Link passHref href="/books/new">
               <Nav.Link>Add A Book</Nav.Link>
             </Link>
-            <Link passHref href="/delete-me">
+            <Link passHref href="/stashes">
               <Nav.Link>My Stashes</Nav.Link>
             </Link>
             <Button variant="danger" onClick={signOut}>

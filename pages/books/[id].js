@@ -26,9 +26,6 @@ export default function ViewBook() {
     }
   };
 
-  console.warn('user:', user);
-  console.warn('Book:', book);
-
   return (
     <Card className="my-2">
       <Card.Body>

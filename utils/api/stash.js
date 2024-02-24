@@ -3,16 +3,20 @@ import { clientCredentials } from '../client';
 const endpoint = clientCredentials.databaseURL;
 
 const getUserStashes = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/stashes/.json?orderBy="uid"&equalTo='${uid}"`, {
+  fetch(`${endpoint}/stashes?uid=${uid}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => {
+      console.warn('Data from API:', data);
+      resolve(data);
+    })
     .catch(reject);
 });
+
 
 const getSingleUserStash = (userId, stashId) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/stashes/${stashId}/.json?orderBy="user_id"&equalTo=${userId}`, {
