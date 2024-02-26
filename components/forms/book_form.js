@@ -19,7 +19,6 @@ const BookForm = ({ bookObj }) => {
   const router = useRouter();
   const { user } = useAuth();
   const { id } = router.query;
-  console.warn('Book ID from router:', id);
 
   useEffect(() => {
     if (bookObj) {
@@ -74,7 +73,6 @@ const BookForm = ({ bookObj }) => {
         uid: user.uid,
       };
       addBook(newBook, user.uid).then(() => router.push('/'));
-      console.warn('Book details:', bookDetails);
     }
   };
 
