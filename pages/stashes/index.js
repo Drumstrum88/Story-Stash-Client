@@ -11,7 +11,6 @@ function UserStashes() {
   const loadStashes = () => {
     getUserStashes(user.uid)
       .then((data) => {
-        console.warn('Data from API:', data);
         setStashes(data);
       })
       .catch((error) => {

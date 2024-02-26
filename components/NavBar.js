@@ -29,6 +29,9 @@ export default function NavBar() {
             <Link passHref href="/stashes">
               <Nav.Link>My Stashes</Nav.Link>
             </Link>
+            <Link passHref href="/stashes/new">
+              <Nav.Link>Create A Stash</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>

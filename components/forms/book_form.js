@@ -73,7 +73,6 @@ const BookForm = ({ bookObj }) => {
         uid: user.uid,
       };
       addBook(newBook, user.uid).then(() => router.push('/'));
-      console.warn('Book details:', bookDetails);
     }
   };
 

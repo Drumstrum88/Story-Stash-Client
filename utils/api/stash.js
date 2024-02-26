@@ -11,22 +11,20 @@ const getUserStashes = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.warn('Data from API:', data);
       resolve(data);
     })
     .catch(reject);
 });
 
-
-const getSingleUserStash = (userId, stashId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/stashes/${stashId}/.json?orderBy="user_id"&equalTo=${userId}`, {
+const getSingleUserStash = (id) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashes/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   })
     .then((response) => response.json())
-    .then((stashData) => resolve(stashData))
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -36,28 +34,28 @@ const createStash = (userId, payload) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ ...payload, user_id: userId }),
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((createdStash) => resolve(createdStash))
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
-const updateSingleUserStash = (userId, stashId, updatedStashData) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/stashes/${stashId}/.json?orderBy="user_id"&equalTo=${userId}`, {
+const updateStash = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashes/${payload.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(updatedStashData),
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((updatedStash) => resolve(updatedStash))
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
-const deleteSingleUserStash = (userId, stashId) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/stashes/${stashId}/.json?orderBy="user_id"&equalTo=${userId}`, {
+const deleteSingleUserStash = (id) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashes/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -68,5 +66,5 @@ const deleteSingleUserStash = (userId, stashId) => new Promise((resolve, reject)
 });
 
 export {
-  getUserStashes, getSingleUserStash, updateSingleUserStash, deleteSingleUserStash, createStash,
+  getUserStashes, getSingleUserStash, updateStash, deleteSingleUserStash, createStash,
 };
