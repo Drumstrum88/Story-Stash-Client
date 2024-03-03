@@ -66,6 +66,64 @@ const deleteBook = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleStashBook = (id) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashbooks/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const createStashBook = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashbooks`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updateStashBook = (stashBookId, payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashbooks/${stashBookId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const deleteStashBook = (id) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashbooks/${id}`, {
+    method: 'DELETE',
+  })
+    .then((resolve))
+    .catch(reject);
+});
+
+const getBooksForStash = (id) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashes/${id}/books`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getBooks, getSingleBook, addBook, updateBook, deleteBook,
+  getBooks, getSingleBook, addBook, updateBook, deleteBook, getSingleStashBook, createStashBook, updateStashBook, deleteStashBook, getBooksForStash,
 };
