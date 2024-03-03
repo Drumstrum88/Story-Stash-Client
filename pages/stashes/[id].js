@@ -24,10 +24,10 @@ const StashView = () => {
       getSingleUserStash(id).then((fetchedStash) => {
         setStash({ ...fetchedStash, books: fetchedStash.books || [] });
       });
-      getBooksForStash(id)
-        .then((fetchedBooks) => {
-          setAllStashBooks(fetchedBooks);
-        })
+      getBooksForStash(id).then((fetchedBooks) => {
+        console.warn('API Response - Stash Books:', fetchedBooks);
+        setAllStashBooks(fetchedBooks);
+      })
         .catch((error) => {
           console.error('Error fetching stash books:', error);
         });
@@ -49,6 +49,7 @@ const StashView = () => {
           stash: stash.id,
           user: user.id,
           book: [selectedBook.id],
+          isRead: false,
         };
         await createStashBook(payload);
       }
