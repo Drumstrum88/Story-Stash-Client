@@ -7,6 +7,7 @@ function Home() {
   const [books, setBooks] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [change, setChange] = useState(true);
 
   useEffect(() => {
@@ -16,9 +17,15 @@ function Home() {
 
   const handleGenreChange = (genreId) => {
     setSelectedGenre(genreId);
-    const fetchBooksPromise = genreId ? getBooksByGenre(genreId) : getBooks();
+    const fetchBooksPromise = genreId ? getBooksByGenre(genreId) : getBooks(searchQuery);
     fetchBooksPromise.then(setBooks);
   };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    getBooks(query).then(setBooks);
+  };
+
   return (
     <div>
       <h1>Story Stash</h1>
@@ -35,6 +42,14 @@ function Home() {
           </option>
         ))}
       </select>
+
+      {/* Search bar */}
+      <input
+        type="text"
+        placeholder="Search by title..."
+        value={searchQuery}
+        onChange={(e) => handleSearch(e.target.value)}
+      />
 
       {/* Display books */}
       <article>
