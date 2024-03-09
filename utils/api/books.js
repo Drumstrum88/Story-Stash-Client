@@ -2,8 +2,10 @@ import { clientCredentials } from '../client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getBooks = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books`, {
+const getBooks = (query = '') => new Promise((resolve, reject) => {
+  const url = query ? `${endpoint}/books/search/?query=${query}` : `${endpoint}/books`;
+
+  fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
