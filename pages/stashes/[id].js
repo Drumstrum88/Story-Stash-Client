@@ -25,7 +25,6 @@ const StashView = () => {
         setStash({ ...fetchedStash, books: fetchedStash.books || [] });
       });
       getBooksForStash(id).then((fetchedBooks) => {
-        console.warn('API Response - Stash Books:', fetchedBooks);
         setAllStashBooks(fetchedBooks);
       })
         .catch((error) => {
