@@ -124,6 +124,18 @@ const getBooksForStash = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getBooksByGenre = (genreId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/list_filtered_by_genre/?genre=${genreId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
-  getBooks, getSingleBook, addBook, updateBook, deleteBook, getSingleStashBook, createStashBook, updateStashBook, deleteStashBook, getBooksForStash,
+  getBooks, getSingleBook, addBook, updateBook, deleteBook, getSingleStashBook, createStashBook, updateStashBook, deleteStashBook, getBooksForStash, getBooksByGenre,
 };
