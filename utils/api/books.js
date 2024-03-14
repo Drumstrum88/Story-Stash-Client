@@ -138,6 +138,23 @@ const getBooksByGenre = (genreId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getReadStashbooks = (userId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/stashbooks/read/?user_id=${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch read stashbooks');
+      }
+      return response.json();
+    })
+    .then((data) => resolve(data))
+    .catch((error) => reject(error));
+});
+
 export {
-  getBooks, getSingleBook, addBook, updateBook, deleteBook, getSingleStashBook, createStashBook, updateStashBook, deleteStashBook, getBooksForStash, getBooksByGenre,
+  getBooks, getSingleBook, addBook, updateBook, deleteBook, getSingleStashBook, createStashBook, updateStashBook, deleteStashBook, getBooksForStash, getBooksByGenre, getReadStashbooks,
 };
