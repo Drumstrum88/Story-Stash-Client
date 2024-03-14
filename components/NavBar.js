@@ -32,6 +32,9 @@ export default function NavBar() {
             <Link passHref href="/stashes/new">
               <Nav.Link>Create A Stash</Nav.Link>
             </Link>
+            <Link passHref href="/books/readBooks">
+              <Nav.Link>Read</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
